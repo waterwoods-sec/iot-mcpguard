@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title description">
+  <title id="title">IoT-MCPGuard architecture</title>
+  <desc id="description">An LLM agent submits tool calls to IoT-MCPGuard. Accepted commands pass through a Modbus adapter to the PLC and plant. Rejection reasons return to the agent, while an independent process-state read supplies the guard with controller measurements.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#89b9d9" stroke-width="1.6"/></marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; }
+      .node { fill: #102e45; stroke: #47738e; stroke-width: 1.5; }
+      .heading { fill: #e6f4ff; font-size: 19px; font-weight: 600; }
+      .detail { fill: #b7d1e3; font-size: 14px; }
+      .label { fill: #c9e4f7; font-size: 14px; }
+      .line { fill: none; stroke: #89b9d9; stroke-width: 1.6; marker-end: url(#arrow); }
+      .feedback { stroke-dasharray: 6 5; }
+    </style>
+  </defs>
+  <rect width="1200" height="430" rx="18" fill="#111820"/>
+  <text x="36" y="42" class="heading">IoT-MCPGuard</text>
+  <text x="36" y="66" class="detail">Runtime enforcement for industrial agent tool calls</text>
+  <rect x="36" y="160" width="180" height="108" rx="16" class="node"/>
+  <text x="126" y="204" text-anchor="middle" class="heading">LLM Agent</text>
+  <text x="126" y="232" text-anchor="middle" class="detail">Proposes actions</text>
+  <rect x="290" y="140" width="340" height="148" rx="16" class="node"/>
+  <text x="460" y="176" text-anchor="middle" class="heading">MCP Bridge / IoT-MCPGuard</text>
+  <text x="460" y="207" text-anchor="middle" class="detail">Capabilities · Tool integrity</text>
+  <text x="460" y="232" text-anchor="middle" class="detail">Safety rules · Command history</text>
+  <text x="460" y="263" text-anchor="middle" class="detail">Records decisions and outcomes</text>
+  <rect x="704" y="160" width="200" height="108" rx="16" class="node"/>
+  <text x="804" y="204" text-anchor="middle" class="heading">Modbus Adapter</text>
+  <text x="804" y="232" text-anchor="middle" class="detail">Maps calls to PLC I/O</text>
+  <rect x="978" y="160" width="186" height="108" rx="16" class="node"/>
+  <text x="1071" y="204" text-anchor="middle" class="heading">PLC and Plant</text>
+  <text x="1071" y="232" text-anchor="middle" class="detail">Control and process</text>
+  <path d="M216 214 H290" class="line"/>
+  <text x="253" y="187" text-anchor="middle" class="label"><tspan x="253">Tool</tspan><tspan x="253" dy="17">call</tspan></text>
+  <path d="M630 214 H704" class="line"/>
+  <text x="667" y="187" text-anchor="middle" class="label"><tspan x="667">Accepted</tspan><tspan x="667" dy="17">command</tspan></text>
+  <path d="M904 214 H978" class="line"/>
+  <text x="941" y="187" text-anchor="middle" class="label"><tspan x="941">Register /</tspan><tspan x="941" dy="17">coil write</tspan></text>
+  <path d="M390 140 V106 H126 V160" class="line feedback"/>
+  <text x="253" y="96" text-anchor="middle" class="label">Rejected call and reason</text>
+  <path d="M1071 268 V336 H520 V288" class="line feedback"/>
+  <text x="796" y="326" text-anchor="middle" class="label">Trusted process-state read</text>
+  <text x="36" y="386" class="detail">Logical flow: the adapter may share the bridge process. State is read independently of LLM-visible content.</text>
+  <text x="36" y="409" class="detail">Solid arrows: command path. Dashed arrows: state and decision feedback.</text>
+</svg>

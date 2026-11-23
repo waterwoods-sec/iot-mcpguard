@@ -1,0 +1,9 @@
+flowchart LR
+    A[LLM Agent] -->|Proposed tool call| G[MCP Bridge / IoT-MCPGuard]
+    G -->|Accepted command| M[Modbus Adapter]
+    M -->|Register or coil operation| P[PLC and Plant]
+    G -.->|Rejected call and reason| A
+    P -.->|Trusted process-state read| G
+
+    classDef component fill:#102e45,stroke:#47738e,color:#e6f4ff,stroke-width:1.5px;
+    class A,G,M,P component;
